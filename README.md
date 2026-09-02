@@ -92,3 +92,5 @@ Generated plans are engineering artifacts, not authorization to write an ECU. Be
 - `tests/`: offline unit tests
 - `docs/ARCHITECTURE.md`: roadmap and design boundaries
 - `docs/BENCH_VALIDATION.md`: mandatory donor-IPC validation gate
+- `sps_capture/`: separate passive Windows SPS2 download-capture utility
+- `docs/SPS_CAPTURE.md`: capture architecture and validation procedure
