@@ -1,0 +1,2 @@
+# Synthetic example only. Replace with the actual vehicle RPO list.
+OPT USA
