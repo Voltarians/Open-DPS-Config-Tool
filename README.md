@@ -59,6 +59,15 @@ before it should be trusted for a paid programming session.
 - Reproducing GM proprietary Type-4 application DLLs.
 - Treating XML defaults as a backup of a vehicle's current configuration.
 
+## GDS2 Capture utility
+
+The [`feature/gds2-capture`](https://github.com/Voltarians/Open-DPS-Config-Tool/tree/feature/gds2-capture)
+branch contains a separate passive Windows diagnostic-session capture program.
+It preserves GDS2/Techline/VCX/J2534 file changes, process snapshots, pass-through
+driver registrations, relevant Windows events, and optional independent CAN-log
+files in a hashed evidence bundle. It does not inject into GDS2 or communicate
+with the vehicle.
+
 ## Quick start
 
 Python 3.10 or later is required. No third-party Python packages are needed.
@@ -127,3 +136,4 @@ Generated plans are engineering artifacts, not authorization to write an ECU. Be
 - `docs/ARCHITECTURE.md`: roadmap and design boundaries
 - `docs/BENCH_VALIDATION.md`: mandatory donor-IPC validation gate
 - `sps_capture/` on `feature/sps2-capture`: standalone Windows SPS2 capture utility
+- `gds2_capture/` on `feature/gds2-capture`: standalone Windows GDS2 capture utility
