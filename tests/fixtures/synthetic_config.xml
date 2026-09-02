@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigurationModule ECU-CONFIG-SCHEMA-VERSION="01.02.02">
+  <Header>
+    <EcuName>SYNTHETIC_TEST_MODULE</EcuName>
+    <DiagnosticAddress>60</DiagnosticAddress>
+    <PartNumber>00000000</PartNumber>
+    <AlphaCode>0000</AlphaCode>
+    <useSecurityAccess>false</useSecurityAccess>
+    <SecurityAlgoTableNo>00</SecurityAlgoTableNo>
+    <SecurityAlgoNo>00</SecurityAlgoNo>
+    <Protocol>
+      <ApplicationLayer>GMW3110</ApplicationLayer>
+      <PhysicalLayer>
+        <PhysicalLayerSpec>GMW3122</PhysicalLayerSpec>
+        <Pin PhysicalLayerSignalName="TEST BUS" PinNumber="1" />
+      </PhysicalLayer>
+    </Protocol>
+  </Header>
+  <DidList>
+    <DidItem>
+      <ID>DID00F0</ID><DidNo>00F0</DidNo><DidDataIndicator>0000</DidDataIndicator>
+      <Name>TEST_DID</Name><Description>Synthetic test data.</Description>
+      <DidLength>2</DidLength><DefaultValue>0000</DefaultValue>
+      <verifyIfSecured>false</verifyIfSecured><isCustomerData>false</isCustomerData>
+    </DidItem>
+  </DidList>
+  <ReadSection />
+  <ModificationSection>
+    <ModificationItem IDREF="DID00F0">
+      <Parameter ParamDefaultValue="00">
+        <ParameterName>P_TEST_OPTION</ParameterName><StartByte>0</StartByte><StartBit>0</StartBit><BitLength>1</BitLength>
+        <ConfData useConfData="true">
+          <ConfigData Value="01" AutoGenExpression="OPT"><Product><RpoCodeRef IDREF="OCOPT" hasToBeAvailable="true" /></Product></ConfigData>
+        </ConfData>
+        <ServiceSection IsServiceAccessAllowed="false"><Interpretation Text="Off" Value="00" /><Interpretation Text="On" Value="01" /></ServiceSection>
+      </Parameter>
+      <Parameter ParamDefaultValue="00">
+        <ParameterName>P_TEST_REGION</ParameterName><StartByte>1</StartByte><StartBit>0</StartBit><BitLength>2</BitLength>
+        <ConfData useConfData="true">
+          <ConfigData Value="01" AutoGenExpression="USA"><Product><RpoCodeRef IDREF="OCUSA" hasToBeAvailable="true" /></Product></ConfigData>
+          <ConfigData Value="02" AutoGenExpression="CAN"><Product><RpoCodeRef IDREF="OCCAN" hasToBeAvailable="true" /></Product></ConfigData>
+        </ConfData>
+        <ServiceSection IsServiceAccessAllowed="false"><Interpretation Text="Default" Value="00" /><Interpretation Text="USA" Value="01" /><Interpretation Text="Canada" Value="02" /></ServiceSection>
+      </Parameter>
+    </ModificationItem>
+  </ModificationSection>
+  <WriteSection><WriteItem IDREF="DID00F0" DelayForMS="0" /></WriteSection>
+  <RpoList>
+    <RpoCodeItem><OptionCodeID>OCOPT</OptionCodeID><OptionCode>OPT</OptionCode><Description>SYNTHETIC OPTION</Description></RpoCodeItem>
+    <RpoCodeItem><OptionCodeID>OCUSA</OptionCodeID><OptionCode>USA</OptionCode><Description>SYNTHETIC USA REGION</Description></RpoCodeItem>
+    <RpoCodeItem><OptionCodeID>OCCAN</OptionCodeID><OptionCode>CAN</OptionCode><Description>SYNTHETIC CANADA REGION</Description></RpoCodeItem>
+  </RpoList>
+  <ModelDesignatorList />
+  <RevisionLog />
+</ConfigurationModule>
