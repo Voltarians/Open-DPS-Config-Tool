@@ -18,6 +18,40 @@ The initial engineering analysis is based on a user-supplied Cadillac ELR instru
 - Create a deterministic configuration bundle ZIP containing the XML, build record, plan, and manifest.
 - Never communicate with or write to a vehicle.
 
+## SPS2 Capture utility
+
+The project also includes a separate Windows utility for preserving files that
+SPS2 and Techline Connect create or modify during a normal programming session.
+Development is maintained on the
+[`feature/sps2-capture`](https://github.com/Voltarians/Open-DPS-Config-Tool/tree/feature/sps2-capture)
+branch so the passive capture workflow remains isolated from the archive and
+configuration engine until Windows validation is complete.
+
+SPS2 Capture currently provides:
+
+- Automatic discovery of common GM, SPS, and Techline data directories.
+- Explicit monitoring of additional cache or log paths supplied by the operator.
+- A pre-session baseline inventory.
+- Timestamped, immutable copies of every observed file version.
+- SHA-256 evidence hashes, an append-only JSONL event log, CSV inventory, and
+  machine-readable session manifest.
+- A final collection window after the operator stops capture.
+- A double-clickable Windows command launcher.
+
+The intended workflow is straightforward:
+
+1. Start SPS2 Capture before opening SPS2 or Techline Connect.
+2. Verify every relevant cache and log directory is being watched.
+3. Run the SPS2 download or programming session normally.
+4. Stop capture only after SPS2 has finished.
+5. Preserve the evidence bundle unchanged and give a copy to the archive analyzer.
+
+The program observes ordinary filesystem activity only. It does not decrypt
+network traffic, inject into GM software, bypass access controls, alter SPS2, or
+communicate with the vehicle. The branch passes the repository test suite, but
+it still requires an end-to-end Windows test against the actual SPS2 cache paths
+before it should be trusted for a paid programming session.
+
 ## Non-goals for the first release
 
 - Circumventing ECU security access.
@@ -92,3 +126,4 @@ Generated plans are engineering artifacts, not authorization to write an ECU. Be
 - `tests/`: offline unit tests
 - `docs/ARCHITECTURE.md`: roadmap and design boundaries
 - `docs/BENCH_VALIDATION.md`: mandatory donor-IPC validation gate
+- `sps_capture/` on `feature/sps2-capture`: standalone Windows SPS2 capture utility
