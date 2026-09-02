@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opendps-config"
+version = "0.1.0"
+description = "Offline GM-style DPS ECU configuration XML inspection and planning tool"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+opendps-config = "opendps_config.__main__:main"
+
+[tool.setuptools]
+packages = ["opendps_config"]
+
